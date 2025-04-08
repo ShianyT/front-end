@@ -1,0 +1,23 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+i,em {
+    font-style: normal;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+input,button{
+    font-family: Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif;
+    border: 0;
+    outline: none;
+}

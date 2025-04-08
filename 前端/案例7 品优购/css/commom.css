@@ -1,0 +1,149 @@
+@font-face {
+    font-family: 'icomoon';
+    src:  url('../fonts/icomoon.eot?tomleg');
+    src:  url('../fonts/icomoon.eot?tomleg#iefix') format('embedded-opentype'),
+      url('../fonts/icomoon.ttf?tomleg') format('truetype'),
+      url('../fonts/icomoon.woff?tomleg') format('woff'),
+      url('../fonts/icomoon.svg?tomleg#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+    }
+.w {
+    width: 1200px;
+    margin: 0 auto;
+}
+.style_red {
+    color: #c7132b;
+}
+.shortcut {
+    height: 30px;
+    line-height: 30px;
+    background: #f1f1f1;
+    font-size: 12px;
+    color: #666;
+}
+.fl{
+    float: left;
+}
+.fl ul li {
+    float: left;
+}
+
+.fl ul li a:last-child{
+    color: #c7132b;
+}
+
+.fr {
+    float: right;
+    height: 14px;
+}
+
+.fr ul li {
+    float: left;
+}
+
+.fr ul li:nth-child(even){
+    width: 1px;
+    height: 14px;
+    margin: 9px 15px 0;
+    background: #666;
+}
+
+.arrow-icon::after {
+    margin-left: 5px;
+    content: '';
+    font-family: 'icomoon';
+    font-size: 14px;
+}
+
+.header {
+    position: relative;
+    height: 105px;
+}
+
+.logo {
+    position: absolute;
+    top: 25px;
+    width: 171px;
+    height: 61px;
+    
+}
+
+.logo a {
+    display: block;
+    width: 171px;
+    height: 61px;
+    background: url(../images/logo.png) no-repeat;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+.search {
+    position: absolute;
+    top: 25px;
+    left: 345px;
+    width: 530px;
+    height: 35px;
+    border: 2px solid #c7132b;
+}
+
+.search input {
+    float: left;
+    width: 440px;
+    height: 35px;
+    padding-left: 10px;
+    color: #666;
+}
+
+.search button {
+    float: left;
+    width: 80px;
+    height: 35px;
+    background: #c7132b;
+    color: #fff;
+}
+
+.hotwords {
+    position: absolute;
+    top: 68px;
+    left: 348px;
+}
+
+.hotwords a {
+    padding: 0 10px;
+    font-size: 12px;
+}
+
+.hotwords a:hover{
+    color: #c7132b;
+}
+
+.shopcar {
+    position: absolute;
+    top: 25px;
+    right: 62px;
+    width: 140px;
+    height: 35px;
+    background: #f7f7f7;
+    line-height: 35px;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    border: 1px solid #dedede;
+}
+
+.shopcar::before {
+    margin-right: 5px;
+    content: '';
+    font-family: 'icomoon';
+    color: #c7132b;
+}
+
+.shopcar::after {
+    margin-left: 5px;
+    content: '';
+    font-family: 'icomoon';
+    font-size: 14px;
+}
+
