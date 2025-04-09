@@ -1,0 +1,43 @@
+.sk {
+    position: absolute;
+    top: 25px;
+    left: 190px;
+    padding-left: 15px;
+    border-left: 1px solid #c7132b;
+}
+
+.nav {
+    height: 45px;
+    line-height: 45px;
+}
+
+.sk_fl {
+    float: left;
+}
+.sk_fl ul li{
+    float: left;
+    padding: 0 30px;
+    font-size: 16px;
+    font-weight: 700;
+    color: black;
+}
+
+.sk_fr {
+    float: left;
+}
+.sk_fr ul li{
+    float: left;
+}
+
+.sk_fr ul li a {
+    display: block;
+    padding: 0 20px;
+    font-size: 14px;
+}
+
+.sk_fr ul li:last-child a::after{
+    content: '';
+    font-family: 'icomoon';
+}
+
+
