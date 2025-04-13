@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>年会抽奖</title>
+</head>
+
+<body>
+
+
+    <div class="box">
+        <h1>年会抽奖</h1>
+
+        <h2>一等奖：<span class="price1 one">???</span></h2>
+        <h3>二等奖：<span class="price2">???</span></h3>
+        <h4>三等奖：<span class="price3">???</span></h4>
+    </div>
+
+    <script>
+        const nameList = ['刘德华', 'wsy', 'pink老师', '周杰伦', '周星驰', '张学友', '金泰亨']
+        for (let i = 0; i < 3; i++) {
+            let count = Math.floor(Math.random() * nameList.length)
+            let name = nameList[count]
+            let obj = document.querySelector(`.price${i + 1}`)
+            obj.innerHTML = name
+            nameList.splice(count, 1)
+        }
+
+        document.querySelector('.one').style.color = 'red'
+
+    </script>
+
+</body>
+
+</html>
