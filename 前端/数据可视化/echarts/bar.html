@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+</head>
+<body>
+    <div style="width: 400px;height: 600px;"></div>
+
+    <script>
+        let mchart = echarts.init(document.querySelector('div'))
+        const xDataArr = ['张三','李四','王五','闰土','小明','茅台','二妞','大强']
+        const yDataArr = [88,92,63,77,94,80,72,86]
+        const yDataArr2 = [44, 13, 78, 26, 92, 64, 84, 57]
+        let option = {
+            legend: {
+                data: ['语文', '数学']
+            },
+            xAxis: {
+                type: 'category',
+                data: ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '语文',
+                    type: 'bar',
+                    data: [88, 92, 63, 77, 94, 80, 72, 86]
+                }, {
+                    name: '数学',
+                    type: 'bar',
+                    data: [93, 60, 61, 82, 95, 70, 71, 86]
+                }
+            ]
+        }
+        mchart.setOption(option)
+    </script>
+</body>
+</html>

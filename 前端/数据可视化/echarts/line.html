@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+
+</head>
+<body>
+    <div style="width: 600px;height: 400px;"></div>
+    <script>
+        var mCharts = echarts.init(document.querySelector("div"))
+        var xDataArr = ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        var yDataArr1 = [120, 132, 101, 134, 90, 230, 210]
+        var yDataArr2 = [20, 82, 191, 94, 290, 330, 310]
+        var option = {
+            xAxis: {
+                type: 'category',
+                data: xDataArr
+            },
+            yAxis: {
+                type: 'value',
+                scale: true
+            },
+            series: [
+                {
+                    type: 'line',
+                    data: yDataArr1,
+                    stack: 'all'  // series中的每一个对象配置相同的stack值, 这个all可以任意写
+                },
+                {
+                    type: 'line',
+                    data: yDataArr2,
+                    stack: 'all' // series中的每一个对象配置相同的stack值, 这个all可以任意写
+                }
+            ]
+        }
+        mCharts.setOption(option)
+    </script>
+</body>
+</html>
