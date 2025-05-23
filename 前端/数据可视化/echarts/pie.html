@@ -36,8 +36,44 @@
         series: [
           {
             type: 'pie',
-            data: pieData,
-            radius: ['50%', '70%']
+            label: {
+              color: 'green'
+            },
+            emphasis: {
+              label: {
+                color: 'red'
+              }
+            },
+            data: [
+              {
+                value: 11231,
+                name: '淘宝',
+                itemStyle: {
+                  color: 'black'
+                },
+                emphasis: {
+                  itemStyle: {
+                    color: 'blue'
+                  }
+                }
+              },
+              {
+                value: 22673,
+                name: '京东'
+              },
+              {
+                value: 6123,
+                name: '唯品会'
+              },
+              {
+                value: 8989,
+                name: '1号店'
+              },
+              {
+                value: 6700,
+                name: '聚美优品'
+              }
+            ]
           }
         ]
       }
