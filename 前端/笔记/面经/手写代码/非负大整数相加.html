@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>非负大整数相加</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * 思路：
+       * 1、用字符串保存大数
+       * 2、初始化res(字符串)、carry保存中间计算结果，将两个字符串转化为数组
+       * 3、将两个数组对应的位数进行相加，大于10进位，后对10取余，将结果保留在当前位
+       * 4、判断当前是否会有进位(大于9)，是则temp赋值true(加法运算中自动转化为1)
+       * 5、重复上述操作，直至计算结束
+       */
+      function sumBigNumber(a, b) {
+        let res = "",
+          carry = 0
+        a = a.split("")
+        b = b.split("")
+        for (let i = 0; i < Math.max(a.length, b.length); i++) {
+          carry = parseInt(a[i]) + parseInt(b[i]) + carry
+          res = (carry % 10) + res
+          carry = carry > 9
+          
+        }
+        if (carry > 0) {
+          res = carry + res
+        }
+        return res
+      }
+      //   console.log(1)
+
+      console.log(sumBigNumber("12345678901234567890", "98765432109876543210"))
+    </script>
+  </body>
+</html>

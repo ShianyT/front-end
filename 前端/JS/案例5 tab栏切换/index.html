@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tab栏切换</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .box {
+            width: 590px;
+            height: 340px;
+            margin: 20px;
+            border: 1px solid #ededed;
+        }
+
+        .box-hd {
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+        }
+
+        .box-hd h2 {
+            float: left;
+            margin-left: 20px;
+            font-weight: 400;
+        }
+
+
+        .box-hd ul {
+            float: right;
+            list-style: none;
+        }
+
+        .box-hd ul li {
+            float: left;
+            margin: 0 20px;
+            font-size: 14px;
+        }
+
+        .box-hd ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .box-hd ul li a.active {
+            color: red;
+            border-bottom: 2px solid red;
+        }
+
+        .box-bd {
+            padding: 0 15px;
+        }
+
+        .box-bd .item {
+            display: none;
+        }
+
+        .box-bd .item.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="box-hd">
+            <h2>每日特价</h2>
+            <ul>
+                <li><a class="active" href="#">精选</a></li>
+                <li><a href="#">美食</a></li>
+                <li><a href="#">百货</a></li>
+                <li><a href="#">个护</a></li>
+                <li><a href="#">预告</a></li>
+            </ul>
+        </div>
+        <div class="box-bd">
+            <div class="item active"><img src="images/tab00.png" alt=""></div>
+            <div class="item"><img src="images/tab01.png" alt=""></div>
+            <div class="item"><img src="images/tab02.png" alt=""></div>
+            <div class="item"><img src="images/tab03.png" alt=""></div>
+            <div class="item"><img src="images/tab04.png" alt=""></div>
+        </div>
+    </div>
+
+    <script>
+        const aList = document.querySelectorAll('.box-hd a')
+
+        for (let i = 0; i < aList.length; i++) {
+            aList[i].addEventListener('mouseenter', function () {
+                document.querySelector('.box-hd a.active').classList.remove('active')
+                this.classList.add('active')
+
+                document.querySelector('.box-bd .item.active').classList.remove('active')
+                document.querySelector(`.box-bd .item:nth-child(${i + 1})`).classList.add('active')
+            })
+        }
+
+    </script>
+
+</body>
+
+</html>

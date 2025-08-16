@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>add(1)(2)(3)</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * 柯里化实现不定长参数相加
+       */
+      function add(...args) {
+        let sum = args.reduce((a, b) => a + b, 0)
+
+        function carry(...moreArgs) {
+          sum += moreArgs.reduce((a, b) => a + b)
+          return carry
+        }
+
+        carry.toString = () => sum
+        return carry
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>instanceof方法</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * 步骤：
+       * 1、获取对象的原型
+       * 2、获取类型的原型
+       * 3、循环判断对象的原型链上是否有所对比的类型原型，若一直查找到尽头(null)都没有则说明flase
+       */
+      // 左边是对象，右边是类型
+      function myInstanceof(left, right) {
+        proto = Object.getPrototypeOf(left)
+        protoType = right.prototype
+        while (true) {
+          if (!proto) return false
+          else if (proto === protoType) return true
+          // 检查原型的原型
+          proto = Object.getPrototypeOf(proto)
+        }
+      }
+      console.log(myInstanceof(Array, String))
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .contain {
+        border: 10px solid #000;
+        width: 300px;
+        /* 创建BFC盒子，解决浮动子盒子高度坍塌问题，且子盒子的margin-left值从BFC盒子的border-left开始排列 */
+        overflow: hidden;
+        /* 溢出部分隐藏 */
+      }
+
+      .child1 {
+        background: #aaaaaa;
+        float: left;
+        height: 50px;
+        margin-top: 30px;
+      }
+      .child2 {
+        background: red;
+        height: 50px;
+        /* 在BFC中上下相邻的两个容器的margin会重叠 */
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contain">
+      <div class="child1">BFC子元素</div>
+      <div class="child2">BFC子元素2</div>
+    </div>
+
+
+    
+  </body>
+</html>

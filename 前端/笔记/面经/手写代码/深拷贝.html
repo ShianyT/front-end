@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>深拷贝</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * 最基本的深拷贝
+       * 缺点：会有循环引用问题
+       *
+       */
+      function cloneDeepDi(obj) {
+        if (!obj || typeof obj !== "object") return
+
+        let newObj = Array.isArray(obj) ? [] : {}
+        let num = 0
+        for (let key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            newObj[key] =
+              typeof obj[key] === "object" ? cloneDeepDi(obj[key]) : obj[key]
+          }
+        }
+        return newObj
+      }
+
+      const obj = {
+        name: "Tom",
+        age: 18,
+      }
+
+      // 比如这里就会导致循环引用，程序一直调用递归无法停止，会导致爆栈
+      //   obj.like = obj
+
+      console.log(cloneDeepDi(obj))
+    </script>
+  </body>
+</html>

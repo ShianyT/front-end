@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机轮播图</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .slider {
+            width: 560px;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .slider_wrapper {
+            width: 100%;
+            height: 320px;
+        }
+
+        .slider_wrapper img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .slider_footer {
+            position: relative;
+            width: 100%;
+            height: 80px;
+            padding: 10px 0 0 15px;
+            background: rgb(100, 67, 68);
+        }
+
+        .slider_footer p {
+            margin: 0;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .slider_indicator {
+            display: flex;
+            margin: 10px 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .slider_indicator li {
+            float: left;
+            list-style: none;
+            width: 8px;
+            height: 8px;
+            margin: 4px;
+            background: #fff;
+            opacity: 0.4;
+            border-radius: 50%;
+        }
+
+        .toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+        }
+
+        .toggle button {
+            width: 28px;
+            height: 28px;
+            margin-left: 10px;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 4px;
+        }
+
+        .toggle button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            ;
+        }
+
+        .slider_indicator .active {
+            width: 12px;
+            height: 12px;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider">
+        <div class="slider_wrapper">
+            <img src="images/slider01.jpg" alt="">
+        </div>
+        <div class="slider_footer">
+            <p>对人类来说会不会太超前了？</p>
+            <ul class="slider_indicator">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="toggle">
+                <button class="prev">&lt;</button>
+                <button class="next">&gt;</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sliderData = [
+            { url: 'images/slider01.jpg', title: '对人类来说会不会太超前了？', color: 'rgb(100, 67, 68)' },
+            { url: 'images/slider02.jpg', title: '开启剑与雪的黑暗传说！', color: 'rgb(43, 35, 26)' },
+            { url: 'images/slider03.jpg', title: '真正的jo厨出现了！', color: 'rgb(36, 31, 33)' },
+            { url: 'images/slider04.jpg', title: '李玉刚：让世界通过B站看到东方大国文化', color: 'rgb(139, 98, 66)' },
+            { url: 'images/slider05.jpg', title: '快来分享你的寒假日常吧~', color: 'rgb(67, 90, 92)' },
+            { url: 'images/slider06.jpg', title: '哔哩哔哩小年YEAH', color: 'rgb(166, 131, 143)' },
+            { url: 'images/slider07.jpg', title: '一站式解决你的电脑配置问题！！！', color: 'rgb(53, 29, 25)' },
+            { url: 'images/slider08.jpg', title: '谁不想和小猫咪贴贴呢！', color: 'rgb(99, 72, 114)' },
+        ]
+
+        const img = document.querySelector('img')
+        const title = document.querySelector('.slider_footer p')
+        const footer = document.querySelector('.slider_footer')
+        let i = 0
+
+        const prev = document.querySelector('.prev')
+        prev.addEventListener('click', function(){
+            toggle(false)
+        })
+
+        const next = document.querySelector('.next')
+        next.addEventListener('click', function(){
+            toggle(true)
+        })
+        
+
+        let n = setInterval(function(){
+            next.click()
+        },3000)
+
+        const box = document.querySelector('.slider')
+        box.addEventListener('mouseenter',function(){
+            clearInterval(n)
+        })
+
+        box.addEventListener('mouseleave',function(){
+            n = setInterval(function(){
+            next.click()
+        },3000)
+        })
+
+        function toggle(isNext){
+            if(isNext) {
+                i++
+            } else {
+                i--
+            }
+            if(i > 7){
+                i = 0
+            } else if (i < 0){
+                i = sliderData.length - 1
+            }
+
+            img.src = sliderData[i].url
+            title.innerHTML = sliderData[i].title
+            footer.style.background = sliderData[i].color
+            document.querySelector('.slider_indicator .active').classList.remove('active')
+            document.querySelector(`.slider_indicator li:nth-child(${i + 1})`).classList.add('active')
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>绑定this的三种方式</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * 手写call函数：传入参数：一个对象，可选的不定数参数
+       * 步骤：
+       * 1、判断调用对象是否为函数
+       * 2、判断传入上下文对象是否存在，不存在设为window
+       * 3、处理传入的参数，截取第一个参数后的所有参数（第一个为context）
+       * 4、将调用对象设为上下文对象的一个属性（属性名自定义，见名知意可叫fn）
+       * 5、使用上下文来调用这个方法并保存返回结果
+       * 6、删除刚才新增的属性（避免影响context）
+       * 7、返回结果
+       */
+      Function.prototype.myCall = function (context) {
+        if (typeof this !== "function") {
+          throw new TypeError("传入对象类型不正确")
+        }
+        if (!context) context = context || window
+        let arg = [...arguments].slice(1)
+        // 对要绑定的对象添加调用该call的方法，当作属性添加进去
+        context.fn = this
+        let result = context.fn(...arg)
+        // 删除这个属性，避免对这个要绑定的对象做出影响
+        delete context.fn
+        return result
+      }
+
+      // 测试：
+      const name = "Mary"
+      const obj = {
+        name: "Tom",
+      }
+      function test() {
+        // console.log(this.name)
+        // console.log(name)
+      }
+      // 相当于给obj临时添加了一个test函数，执行一次后立即清除
+      test.myCall(obj)
+
+      /**
+       * 手写apply函数：传入参数：一个对象，可选的一个参数数组
+       * 步骤：
+       * 1、判断调用对象是否为函数
+       * 2、判断传入上下文对象是否存在，不存在设为window
+       * 3、将调用对象设为上下文对象的一个属性（属性名自定义，见名知意可叫fn）
+       * 4、判断参数值是否传入(若有取出索引为1的值，它会是一个数组)
+       * 5、使用上下文来调用这个方法并保存返回结果
+       * 6、删除刚才新增的属性（避免影响context）
+       * 7、返回结果
+       */
+      Function.prototype.myApply = function (context) {
+        if (typeof this !== "function") {
+          throw new TypeError("调用对象类型不正确")
+        }
+        if (!context) context = context || window
+        context.fn = this
+        let res = null
+        if (arguments[1]) {
+          res = context.fn(...arguments[1])
+        } else {
+          res = context.fn()
+        }
+        delete context.fn
+        return res
+      }
+
+      /**
+       * 手写bind函数：参入参数：一个对象，可选的不定数参数
+       * 步骤：
+       * 1、判断调用是否为函数
+       * 2、保存当前函数的引用（this），获取其余参数
+       * 3、创建一个空函数作为当前函数原型的中转
+       * 4、返回一个绑定函数，使用apply，判断该绑定函数是否作为构造函数使用，若则使用当前函数this，不是传入context
+       * 5、通过空函数，将绑定函数的原型指向当前函数的原型
+       */
+      Function.prototype.myBind = function (context) {
+        if (typeof this !== "function") {
+          throw new TypeError("调用对象类型不正确")
+        }
+        const self = this,
+          args = [...arguments].slice(1)
+        const fn = function () {}
+        return (bound = function () {
+          const boundArgs = [...arguments]
+          return apply(
+            // 判断绑定函数是否作为构造函数使用
+            this instanceof fn ? this : context,
+            args.concat(boundArgs)
+          )
+        })
+        // 用fn作为中转，避免因为修改bound的原型内容，导致当前函数的原型受到影响
+        fn.prototype = this.prototype
+        bound.prototype = fn.prototype
+      }
+
+    </script>
+  </body>
+</html>

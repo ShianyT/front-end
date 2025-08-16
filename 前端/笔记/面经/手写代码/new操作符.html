@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>new操作符</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * 步骤：
+       * 1、创建一个新的空对象
+       * 2、设置原型，将对象的原型设置为构造函数的prototype对象
+       * 3、让构造函数的this指向这个对象，执行构造函数代码
+       * 4、判断构造函数的返回值类型，如果是值类型，返回创建对象。如果引用类型，返回这个引用对象
+       */
+      function newFactory() {
+        let newObj = null
+        let construcor = Array.prototype.shift.call(arguments)
+        let res = null
+
+        console.log(arguments)
+
+        if (typeof construcor !== "function") {
+          throw new TypeError("type error")
+        }
+        newObj = Object.create(construcor.prototype)
+        res = construcor.apply(newObj, arguments)
+        let flag =
+          !res && (typeof res === "object" || typeof res ==="function")
+        return flag ? res : newObj
+      }
+
+      const person = function (name) {
+        this.name = name
+      }
+
+      const p = newFactory(person, "Tom")
+      console.log(p)
+    </script>
+  </body>
+</html>
